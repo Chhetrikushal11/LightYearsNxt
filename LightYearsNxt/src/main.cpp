@@ -1,9 +1,13 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "framework/Application.h"
 
 int main()
 {
-	sf::RenderWindow renderWindow(sf::VideoMode(1040, 1280), "MyWindow");
-	std::cout << "Hello Everyone in Light Years Nxt Game." << std::endl;
+	// to eradicate any memory leak lets use the shared pointer
+	// as it deletes it self after it goes out of scope
+	std::shared_ptr<ly::Application> app = std::make_shared<ly::Application>(); // app is name of the Application object
+
+	app->Run();
 	return 0;
 }
