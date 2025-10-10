@@ -40,7 +40,8 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(${SFML_LIB_NAME})
 
 # setting the variables for valu LightYearsGame
+set(LIGHT_YEARS_ENGINE_TARGET_NAME LightYearsEngine)
 set(LIGHT_YEARS_GAME_TARGET_NAME LightYearsGame)
-
 # adding subdirectory
-add_subdirectory(LightYearsNxt)
+add_subdirectory(LightYearsNxtEngine)
+add_subdirectory(LightYearsNxtGame)
