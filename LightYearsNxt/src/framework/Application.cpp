@@ -1,12 +1,21 @@
 #include "framework/Application.h"
 
+
 namespace ly
 {
-	Application::Application() : _mWindow{ sf::VideoMode(576, 720), "LightYears" }
+	Application::Application() 
+		: _mWindow{ sf::VideoMode(576, 720), "LightYears" }, _mtargetFrameRate(60.f),
+		_mTickClock()
 	{
 	}
 	void Application::Run()
 	{
+		// anytime the game restart we want to restart the clock
+		_mTickClock.restart();
+		float accumlatedTime = 0.f;
+		// delta time is 1/FixedFrameRate
+		float targetDeltaTime = 1.f / _mtargetFrameRate;
+
 		while (_mWindow.isOpen())
 		{
 			// since the infinite while loop when open will make the renderWindow to be open but it not responsive
@@ -21,6 +30,44 @@ namespace ly
 				}
 
 			}
+			// to find the time elapsed we update the accumulatedTime
+			float _actualFrameRate = _mTickClock.restart().asSeconds();
+			
+			accumlatedTime += _actualFrameRate;
+			while (accumlatedTime > targetDeltaTime)
+			{	
+				
+				accumlatedTime -= targetDeltaTime;
+				 TickInternal(targetDeltaTime);
+				RenderInternal();
+			}
 		}
+	}
+	void Application::TickInternal(float deltaTime)
+	{
+		
+		Tick(deltaTime);
+	}
+	void Application::RenderInternal()
+	{
+		// we want render to clear the game
+		_mWindow.clear();
+
+
+		Render(); // template function 
+		_mWindow.display();
+	}
+	void Application::Render()
+	{
+		// now to build the rectangular shape
+		sf::RectangleShape rect{ sf::Vector2f{100,100} };
+		rect.setFillColor(sf::Color::Green);
+		rect.setPosition(_mWindow.getSize().x / 2.f - rect.getSize().x / 2.f, _mWindow.getSize().y / 2.f - rect.getSize().y / 2.f);
+		//after we build the shape we need to tell our window to draw the shape in the canvas
+		_mWindow.draw(rect);
+	}
+	void Application::Tick(float deltaTime)
+	{
+		std::cout << "Ticking at framerate: " << 1.f / deltaTime << std::endl;
 	}
 }
