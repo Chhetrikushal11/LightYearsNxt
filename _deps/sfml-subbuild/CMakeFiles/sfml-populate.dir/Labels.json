@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/sfml-populate"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/d3ef2fcd7a5e3b20320b21f8697b5093/sfml-populate.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/23c3ee15c5f0921f2ca891e5f4d6b7d3/sfml-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/9c94933b3df7ba5793029de9870ba611/sfml-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"sfml-populate"
+		],
+		"name" : "sfml-populate"
+	}
+}

@@ -4,6 +4,12 @@ add_library(${LIGHT_YEARS_ENGINE_TARGET_NAME} STATIC
  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Application.h
  ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
 
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/core.h
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/core.cpp
+
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/framework/World.h
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/framework/World.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/include/EntryPoint.h
  ${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
 )
@@ -14,10 +20,11 @@ target_include_directories(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC
 )
 
 # linking the library so we can include this in our code
-target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-graphics)
-target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-window)
-target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-system)
-target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-audio)
+target_link_libraries(${LIGHT_YEARS_ENGINE_TARGET_NAME} PUBLIC sfml-graphics
+ sfml-window
+ sfml-system
+ sfml-audio
+ )
 
 # to do the repetative task in ease while creating a macro to add the dll in postBuild
 function(CopyLibToTarget LIB_NAME TARGET_NAME)

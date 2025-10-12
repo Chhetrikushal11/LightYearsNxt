@@ -1,0 +1,150 @@
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/tmp/sfml-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\kbasnet\Desktop\C++\CompleteGameDevSeries\LightYearsNxt\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/tmp/sfml-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-UPDATE.RULE
+setlocal
+cd C:\Users\kbasnet\Desktop\C++\CompleteGameDevSeries\LightYearsNxt\_deps\sfml-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/tmp/sfml-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\kbasnet\Desktop\C++\CompleteGameDevSeries\LightYearsNxt\_deps\sfml-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\kbasnet\Desktop\C++\CompleteGameDevSeries\LightYearsNxt\_deps\sfml-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\kbasnet\Desktop\C++\CompleteGameDevSeries\LightYearsNxt\_deps\sfml-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\9C94933B3DF7BA5793029DE9870BA611\SFML-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\kbasnet\Desktop\C++\CompleteGameDevSeries\LightYearsNxt\_deps\sfml-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\23C3EE15C5F0921F2CA891E5F4D6B7D3\SFML-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/Debug/sfml-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/Debug/sfml-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKEFILES\D3EF2FCD7A5E3B20320B21F8697B5093\SFML-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\KBASNET\DESKTOP\C++\COMPLETEGAMEDEVSERIES\LIGHTYEARSNXT\_DEPS\SFML-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild -BC:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild --check-stamp-file C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/_deps/sfml-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
