@@ -11,7 +11,7 @@ namespace ly
 	{
 	public:
 		//constructor
-		Application();
+		Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style );
 
 		template<typename WorldType>
 		weak<WorldType> LoadWorld();

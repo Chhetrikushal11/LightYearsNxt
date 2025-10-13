@@ -5,9 +5,11 @@
 
 namespace ly
 {
-	Application::Application() 
-		: _mWindow{ sf::VideoMode(576, 720), "LightYears" }, _mtargetFrameRate(60.f),
-		_mTickClock(), currentWorld{nullptr}
+
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
+		: _mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style},
+		_mtargetFrameRate(60.f),
+		_mTickClock(), currentWorld{ nullptr }
 	{
 	}
 	void Application::Run()
