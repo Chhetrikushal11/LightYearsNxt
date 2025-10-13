@@ -14,7 +14,7 @@ namespace ly{
 
 	Actor::~Actor()
 	{
-
+		LOG("Actor Destroyed.");
 	}
 
 	void Actor::BeginPlayInternal()

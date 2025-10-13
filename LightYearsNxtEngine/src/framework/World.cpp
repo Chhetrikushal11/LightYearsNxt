@@ -1,6 +1,8 @@
 #include "framework/World.h"
 #include "framework/core.h"
 #include "framework/Actor.h"
+#include "framework/Object.h"
+
 
 namespace ly
 {
@@ -21,12 +23,21 @@ namespace ly
 			actor->BeginPlayInternal();
 			
 		}
-		for (shared<Actor> actor : _mActors)
-		{
-			actor->Tick(deltaTime);
 
-		}
 		_mPendingActors.clear();
+		for (auto iter = _mActors.begin(); iter != _mActors.end();)
+		{
+			if (iter->get()->IsPendingDestroy())
+			{
+				iter = _mActors.erase(iter);
+				// erase the Actor from the vector
+			}
+			else
+			{
+				iter->get()->Tick(deltaTime);
+				++iter;
+			}
+		}
 		Tick(deltaTime);
 	}
 
@@ -34,6 +45,7 @@ namespace ly
 	{
 		if (!_mBeganPlay) {
 			_mBeganPlay = true;
+			BeginPlay();
 
 		}
 	}

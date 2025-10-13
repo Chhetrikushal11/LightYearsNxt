@@ -1,10 +1,13 @@
 #pragma once
-
+#include "framework/Object.h"
 
 namespace ly {
 	// need to forward declare Application since it will own the world
 	class World;
-;	class Actor {
+
+	// inheritance
+;	class Actor : public Object
+{
 	public:
 		Actor(World* owningWorld);
 		void BeginPlayInternal();
