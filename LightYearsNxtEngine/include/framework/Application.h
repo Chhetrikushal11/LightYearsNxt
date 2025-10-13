@@ -2,24 +2,32 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "framework/core.h"
 
 namespace ly
 {
+	class World;
 	class Application
 	{
 	public:
 		//constructor
 		Application();
 
-		//run function
+		template<typename WorldType>
+		weak<WorldType> LoadWorld();
 		void Run();
+		
+		private:
+
+		//run function
+		
 		// to update the frame
 		void TickInternal(float deltaTime);
 
 		// rendering
 		void RenderInternal();
 
-	private:
+	
 		sf::RenderWindow _mWindow;
 		// target framerate as we are going for fixed framerate
 		float _mtargetFrameRate;
@@ -30,6 +38,19 @@ namespace ly
 		// to keep the record of the timing we need a some sort of clock
 		sf::Clock _mTickClock;
 
+		// to have one copy of the World
+		shared<World> currentWorld;
 
 	};
+
+	template<typename WorldType>
+	weak<WorldType> Application::LoadWorld()
+	{
+		shared<WorldType> newWorld{ new WorldType{this} };
+		currentWorld = newWorld;
+		currentWorld->BeginPlayInternal();
+		return newWorld;
+
+	}
 }
+

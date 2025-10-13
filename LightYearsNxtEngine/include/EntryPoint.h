@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "framework/Application.h"
+#include "framework/core.h"
 
 
 namespace ly
