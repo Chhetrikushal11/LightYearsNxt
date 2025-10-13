@@ -10,7 +10,7 @@ namespace ly
 	class Application
 	{
 	public:
-		//constructor
+		//constructor with Parameter
 		Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style );
 
 		template<typename WorldType>

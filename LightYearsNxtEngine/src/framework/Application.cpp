@@ -71,12 +71,10 @@ namespace ly
 	}
 	void Application::Render()
 	{
-		// now to build the rectangular shape
-		sf::RectangleShape rect{ sf::Vector2f{100,100} };
-		rect.setFillColor(sf::Color::Green);
-		rect.setPosition(_mWindow.getSize().x / 2.f - rect.getSize().x / 2.f, _mWindow.getSize().y / 2.f - rect.getSize().y / 2.f);
-		//after we build the shape we need to tell our window to draw the shape in the canvas
-		_mWindow.draw(rect);
+		if (currentWorld)
+		{
+			currentWorld->Render(_mWindow);
+		}
 	}
 	void Application::Tick(float deltaTime)
 	{

@@ -1,5 +1,6 @@
 #pragma once
 #include "framework/core.h"
+#include <SFML/Graphics.hpp>
 
 
 namespace ly {
@@ -21,6 +22,7 @@ namespace ly {
 
 		void BeginPlayInternal();
 		void TickInternal(float deltaTime);
+		void Render(sf::RenderWindow& window);
 
 		// we use virtual destructor when we use inheritance.
 		// otherwise it will not call parent destructor.
