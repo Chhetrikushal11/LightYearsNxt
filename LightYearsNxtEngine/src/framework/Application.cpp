@@ -2,14 +2,16 @@
 #include <stdio.h>
 #include "framework/core.h"
 #include "framework/World.h"
-
+#include "framework/AssestManager.h"
 namespace ly
 {
 
 	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
 		: _mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style},
 		_mtargetFrameRate(60.f),
-		_mTickClock(), currentWorld{ nullptr }
+		_mTickClock(), currentWorld{ nullptr },
+		_mCleanCycleClock{},
+		_mCleanCycleInterval{2.f}
 	{
 	}
 	void Application::Run()
@@ -46,7 +48,7 @@ namespace ly
 				RenderInternal();
 			}
 
-			LOG("Ticking at framerate :%f",1.f / _actualFrameRate);
+			// LOG("Ticking at framerate :%f",1.f / _actualFrameRate);
 		}
 	}
 	void Application::TickInternal(float deltaTime)
@@ -57,6 +59,12 @@ namespace ly
 		{
 			
 			currentWorld->TickInternal(deltaTime);
+		}
+
+		if (_mCleanCycleClock.getElapsedTime().asSeconds() >= _mCleanCycleInterval)
+		{
+			_mCleanCycleClock.restart();
+			AssestManager::Get().CleanCycle();
 		}
 	}
 	void Application::RenderInternal()

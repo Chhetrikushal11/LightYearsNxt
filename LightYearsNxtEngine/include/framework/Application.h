@@ -41,6 +41,10 @@ namespace ly
 		// to have one copy of the World
 		shared<World> currentWorld;
 
+		// create the clock for AssestManager
+		sf::Clock _mCleanCycleClock;
+		float _mCleanCycleInterval;
+
 	};
 
 	template<typename WorldType>

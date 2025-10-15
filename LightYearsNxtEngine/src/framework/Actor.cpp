@@ -1,6 +1,7 @@
 #include "framework/Actor.h"
 #include "framework/core.h"
 #include "framework/World.h"
+#include "framework/MathUtility.h"
 
 namespace ly{
 
@@ -42,20 +43,22 @@ namespace ly{
 	void Actor::BeginPlay()
 	{
 		// for testing
-		LOG("THE ACTOR HAS BEGAN");
+		// LOG("THE ACTOR HAS BEGAN");
 	}
 
 	void Actor::Tick(float deltaTime)
 	{
-		LOG("Actor Tick Began");
+		// LOG("Actor Tick Began");
 	}
 	void Actor::SetTexture(const std::string& texturePath)
 	{
-		_mTexture.loadFromFile(texturePath);
-		_mSprite.setTexture(_mTexture);
+		// to load the assest manager
+		_mTexture = AssestManager::Get().LoadTexture(texturePath);
+		if (!_mTexture) return;
+		_mSprite.setTexture(*_mTexture);
 
-		int texthWidth = _mTexture.getSize().x;
-		int texthHeight = _mTexture.getSize().y;
+		int texthWidth = _mTexture->getSize().x;
+		int texthHeight = _mTexture->getSize().y;
 
 		_mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{texthWidth,texthHeight} });
 	}
@@ -65,5 +68,44 @@ namespace ly{
 			return;
 
 		window.draw(_mSprite);
+	}
+	void Actor::SetActorLocation(const sf::Vector2f& newLoc)
+	{
+		// sprite can have location and our actor are represented by location
+		_mSprite.setPosition(newLoc);
+	}
+	void Actor::SetActorRotation(float newRot)
+	{
+		_mSprite.setRotation(newRot);
+	}
+	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
+	{
+		// we need to get the current location of the actor 
+		// then we can offset the location
+		SetActorLocation(GetActorLocation() + offsetAmt);
+	}
+	void Actor::AddActorRotationOffset(float offsetAmt)
+	{
+	
+		SetActorRotation(GetActorRotation() + offsetAmt);
+	}
+	sf::Vector2f Actor::GetActorLocation() const
+	{
+		return _mSprite.getPosition();
+	}
+	float Actor::GetActorRotation() const
+	{
+		return _mSprite.getRotation();
+	}
+	sf::Vector2f Actor::GetActorForwardDirection() const
+	{
+		// how to determine the forward direction 
+		// first need to hold the orentation of the direction.
+		// we will do by determining the rotation.
+		return RotationToVector(GetActorRotation());
+	}
+	sf::Vector2f Actor::GetActorRightDirection() const
+	{
+		return RotationToVector(GetActorRotation() + 90.f);
 	}
 }

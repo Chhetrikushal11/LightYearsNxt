@@ -3,6 +3,8 @@
 
 #include "framework/Core.h"
 #include "framework/Object.h"
+#include "framework/AssestManager.h"
+#include "framework/MathUtility.h"
 
 namespace ly {
 	// need to forward declare Application since it will own the world
@@ -22,13 +24,33 @@ namespace ly {
 		// otherwise it will not call parent destructor.
 		virtual ~Actor();
 		void Render(sf::RenderWindow& window);
+
+		// setting actor location
+		void SetActorLocation(const sf::Vector2f& newLoc);
+
+		// setting actor Rotation
+		void SetActorRotation(float newRot);
+
+		// need some hyperfunction to manage the orentation and position of the player
+		void AddActorLocationOffset(const sf::Vector2f& offsetAmt);
+		void AddActorRotationOffset(float offsetAmt);
+		sf::Vector2f GetActorLocation() const;
+		float GetActorRotation() const;
+
+		// to get the front vector direction of the actor
+		sf::Vector2f GetActorForwardDirection() const;
+
+		// to get the right side vector direction of the actor
+		sf::Vector2f GetActorRightDirection() const;
+
+
 	private:
 	
 		World* _mowningWorld;
 		bool _mHasBeganPlay;
 
 		sf::Sprite _mSprite;
-		sf::Texture _mTexture;
+		shared<sf::Texture> _mTexture; // we need to shared pointer
 
 
 	
