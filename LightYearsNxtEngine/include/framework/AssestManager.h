@@ -13,6 +13,8 @@ namespace ly
 		// to loop through our code we need to run a logic to see if there last shared pointer if other go out of scope
 		void CleanCycle();
 
+		// making the function to ask the root directory of Asset
+		void SetAssetRootDirectory(const std::string& directory);
 	protected:
 		// have to create a singleton constructor
 		// will access this public interface
@@ -27,5 +29,7 @@ namespace ly
 		Dictionary<std::string, shared<sf::Texture>> _mLoadedTextureMap;
 		// the reason we are making the Dictionary for _mLoadedTextureMap to find if the Texture have been loaded already
 		// and by pass path as a key it is easier to find the reference.
+
+		std::string _mRootDirectory; // need to call this for path.
 	};
 }

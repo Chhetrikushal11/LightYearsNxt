@@ -2,10 +2,14 @@
 #include <framework/Application.h>
 #include <framework/World.h>
 #include <framework/core.h>
+#include "spaceship/spaceship.h"
+#include "player/PlayerSpaceship.h"
 
 namespace ly
 {
 	class Actor;
+	class Spaceship;
+	class PlayerSpaceship;
 	class GameApplication : public Application
 	{
 	public:
@@ -13,7 +17,6 @@ namespace ly
 		virtual void Tick(float deltaTime) override;
 
 	private:
-		float counter;
-		weak<Actor> actorToDestroy;
+		weak<PlayerSpaceShip> testPlayerSpaceShip;
 	};
 }

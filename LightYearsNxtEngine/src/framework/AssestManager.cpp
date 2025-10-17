@@ -31,7 +31,7 @@ namespace ly
 		// if cannot find the already loaded
 		// here we are creating key name newTexture which will hold the value of newTexture stored in the dictionary
 		shared<sf::Texture> newTexture{ new sf::Texture };
-			if (newTexture->loadFromFile(path))
+			if (newTexture->loadFromFile(_mRootDirectory + path))
 			{
 				_mLoadedTextureMap.insert({ path, newTexture });
 				return newTexture;
@@ -55,7 +55,12 @@ namespace ly
 			}
 		}
 	}
-	AssestManager::AssestManager()
+	void AssestManager::SetAssetRootDirectory(const std::string& directory)
+	{
+		_mRootDirectory = directory;
+	}
+
+	AssestManager::AssestManager() : _mRootDirectory{}
 	{
 
 	}

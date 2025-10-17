@@ -61,6 +61,9 @@ namespace ly{
 		int texthHeight = _mTexture->getSize().y;
 
 		_mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{texthWidth,texthHeight} });
+		// to make the origin of the actor on center we run CenterPivot function
+
+		CenterPivot();
 	}
 	void Actor::Render(sf::RenderWindow& window)
 	{
@@ -89,6 +92,7 @@ namespace ly{
 	
 		SetActorRotation(GetActorRotation() + offsetAmt);
 	}
+
 	sf::Vector2f Actor::GetActorLocation() const
 	{
 		return _mSprite.getPosition();
@@ -107,5 +111,11 @@ namespace ly{
 	sf::Vector2f Actor::GetActorRightDirection() const
 	{
 		return RotationToVector(GetActorRotation() + 90.f);
+	}
+
+	void Actor::CenterPivot()
+	{
+		sf::FloatRect bound = _mSprite.getGlobalBounds();
+		_mSprite.setOrigin(bound.width / 2.f, bound.height / 2.f);
 	}
 }

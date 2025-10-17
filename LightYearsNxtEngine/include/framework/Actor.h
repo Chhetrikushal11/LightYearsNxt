@@ -49,8 +49,12 @@ namespace ly {
 		World* _mowningWorld;
 		bool _mHasBeganPlay;
 
+		// what does the Sprtie class do?
 		sf::Sprite _mSprite;
 		shared<sf::Texture> _mTexture; // we need to shared pointer
+
+		// to make our actor at the centre
+		void CenterPivot();
 
 
 	
