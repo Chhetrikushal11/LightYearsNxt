@@ -26,6 +26,9 @@ namespace ly
 			void HandleInput();
 			sf::Vector2f _mMoveInput;
 
+			// to clamping speed
+			void NormalizeInput();
+
 			// to make the input work we need make the function to consume the input
 			void ConsumeInput(float deltatime);
 
