@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "framework/core.h"
+#include <SFML/System.hpp>
 
 namespace ly
 {
@@ -16,7 +17,10 @@ namespace ly
 		template<typename WorldType>
 		weak<WorldType> LoadWorld();
 		void Run();
-		
+
+		// to understand the size of the window
+		sf::Vector2u GetWindowSize() const;
+
 		private:
 
 		//run function
@@ -44,6 +48,8 @@ namespace ly
 		// create the clock for AssestManager
 		sf::Clock _mCleanCycleClock;
 		float _mCleanCycleInterval;
+		
+
 
 	};
 

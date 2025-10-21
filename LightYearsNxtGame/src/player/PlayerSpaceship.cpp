@@ -42,12 +42,42 @@ namespace ly
 			_mMoveInput.x = 1.f;
 		}
 
+		ClampInputOnEdge();
 		NormalizeInput();
 	}
 	void PlayerSpaceShip::NormalizeInput()
 	{
 		Normalize(_mMoveInput); // since we are doing pass by reference we can use function_name(parameter_name)
 		LOG("Moveinput is now: %f, %f", _mMoveInput.x, _mMoveInput.y);
+	}
+	void PlayerSpaceShip::ClampInputOnEdge()
+	{
+		sf::Vector2f actorLocation = GetActorLocation();
+
+		// for x-axis --------------------
+		if (actorLocation.x < 0 && _mMoveInput.x == -1.f) // if actor is trying to move outside the left boundary
+		{
+			_mMoveInput.x = 0.f;
+			LOG("Going Outside the Left boundary.");
+		}
+		if (actorLocation.x > GetWindowSize().x && _mMoveInput.x == 1.f) // if actor is trying to move outside the right boundary
+		{
+			_mMoveInput.x = 0.f;
+			LOG("Going Outside the Right boundary.");
+		}
+
+		// for y-axis --------------------
+		if (actorLocation.y < 0 && _mMoveInput.y == -1.f) // if actor is trying to move upward
+		{
+			_mMoveInput.y = 0.f;
+			LOG("Going Outside the Upper boundary.");
+		}
+		if (actorLocation.y > GetWindowSize().y && _mMoveInput.y == -1.f) // if actor is trying to move downward
+		{
+			_mMoveInput.y = 0.f;
+			LOG("Going Outside the Lower boundary.");
+		}
+
 	}
 	void PlayerSpaceShip::ConsumeInput(float deltatime)
 	{

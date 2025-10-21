@@ -5,6 +5,7 @@
 #include "framework/Object.h"
 #include "framework/AssestManager.h"
 #include "framework/MathUtility.h"
+#include "framework/World.h"
 
 namespace ly {
 	// need to forward declare Application since it will own the world
@@ -42,6 +43,9 @@ namespace ly {
 
 		// to get the right side vector direction of the actor
 		sf::Vector2f GetActorRightDirection() const;
+
+		// for getting window size
+		sf::Vector2u GetWindowSize() const;
 
 
 	private:

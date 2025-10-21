@@ -2,6 +2,7 @@
 #include "framework/core.h"
 #include "framework/Actor.h"
 #include "framework/Object.h"
+#include "framework/Application.h"
 
 
 namespace ly
@@ -66,6 +67,11 @@ namespace ly
 	void World::Tick(float deltaTime)
 	{
 		// LOG("Tick at the frame rate %f", 1.f/deltaTime);
+	}
+
+	sf::Vector2u World::GetWindowsSize() const
+	{
+		return _mowningApp-> GetWindowSize();
 	}
 
 	void World::BeginPlay()

@@ -29,6 +29,9 @@ namespace ly
 			// to clamping speed
 			void NormalizeInput();
 
+			// for checking the boundary
+			void ClampInputOnEdge();
+
 			// to make the input work we need make the function to consume the input
 			void ConsumeInput(float deltatime);
 

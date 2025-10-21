@@ -51,6 +51,10 @@ namespace ly
 			// LOG("Ticking at framerate :%f",1.f / _actualFrameRate);
 		}
 	}
+	sf::Vector2u Application::GetWindowSize() const
+	{
+		return _mWindow.getSize();
+	}
 	void Application::TickInternal(float deltaTime)
 	{
 

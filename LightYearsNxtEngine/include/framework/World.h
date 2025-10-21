@@ -34,6 +34,9 @@ namespace ly {
 		template <typename ActorType>
 		weak<ActorType> SpawnActor();
 
+		// to queries from the application
+		sf::Vector2u GetWindowsSize() const;
+
 	private:
 		void BeginPlay();
 		void Tick(float deltaTime);
