@@ -72,7 +72,7 @@ namespace ly
 			_mMoveInput.y = 0.f;
 			LOG("Going Outside the Upper boundary.");
 		}
-		if (actorLocation.y > GetWindowSize().y && _mMoveInput.y == -1.f) // if actor is trying to move downward
+		if (actorLocation.y > GetWindowSize().y && _mMoveInput.y == 1.f) // if actor is trying to move downward
 		{
 			_mMoveInput.y = 0.f;
 			LOG("Going Outside the Lower boundary.");
