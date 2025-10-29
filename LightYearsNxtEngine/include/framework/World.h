@@ -31,8 +31,8 @@ namespace ly {
 		// now we need to add Spawn the actor 
 		// for that we need to Spawn the weak pointer
 		
-		template <typename ActorType>
-		weak<ActorType> SpawnActor();
+		template <typename ActorType, typename... Args>
+		weak<ActorType> SpawnActor(Args... args);
 
 		// to queries from the application
 		sf::Vector2u GetWindowsSize() const;
@@ -60,10 +60,10 @@ namespace ly {
 
 	};
 
-	template<typename ActorType>
-	weak<ActorType> World::SpawnActor()
+	template<typename ActorType, typename... Args>
+	weak<ActorType> World::SpawnActor(Args... args) // use veradic arguments
 	{
-		shared<ActorType> newActor{ new ActorType{this} };
+		shared<ActorType> newActor{ new ActorType(this, args...) };
 		_mPendingActors.push_back(newActor);
 		return newActor;
 

@@ -2,11 +2,16 @@
 
 #include "spaceship/spaceship.h"
 #include "framework/World.h"
+
 // to handle the input 
 #include "SFML/System.hpp"
+#include "weapon/bulletshooter.h"
+
+
 
 namespace ly
 {
+	class BulletShooter;
 	class PlayerSpaceShip : public Spaceship
 	{
 	public:
@@ -20,6 +25,9 @@ namespace ly
 
 		// to get the speed
 		float GetSpeed() const { return _mSpeed;  }
+
+		// for shooting mechanics
+		virtual void Shoot() override;
 
 	private:
 			// to handle the input we need to create function to private function
@@ -37,6 +45,10 @@ namespace ly
 
 			// for speed
 			float _mSpeed;
+
+			// for shooting
+			unique<BulletShooter> _mShooter;
+			
 
 	};
 }

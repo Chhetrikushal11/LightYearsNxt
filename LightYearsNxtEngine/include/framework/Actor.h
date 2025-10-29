@@ -47,7 +47,8 @@ namespace ly {
 		// for getting window size
 		sf::Vector2u GetWindowSize() const;
 
-
+		// since bulletshooter cannot spawn the actor we neeed to create a pointer of World in the Actor header file
+		World* GetWorld() const { return _mowningWorld; }
 	private:
 	
 		World* _mowningWorld;

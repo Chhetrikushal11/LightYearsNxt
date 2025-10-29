@@ -19,6 +19,11 @@ namespace ly
 			// we need velocity 
 			sf::Vector2f GetVelocity() const { return _mVelocity; }
 
+			// for shooting mechanics
+			virtual void Shoot();
+
+
+
 	private:
 		sf::Vector2f _mVelocity;
 	};
