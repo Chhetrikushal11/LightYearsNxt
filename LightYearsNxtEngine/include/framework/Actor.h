@@ -49,6 +49,12 @@ namespace ly {
 
 		// since bulletshooter cannot spawn the actor we neeed to create a pointer of World in the Actor header file
 		World* GetWorld() const { return _mowningWorld; }
+
+		// to make sure we have the actor size so we can compare
+		sf::FloatRect GetActorGlobalBounds() const;
+
+		// to make sure the bullet gets destoryed if they are out of scope
+		bool IsActorOutofWindowBounds() const;
 	private:
 	
 		World* _mowningWorld;

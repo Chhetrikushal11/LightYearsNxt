@@ -28,16 +28,17 @@ namespace ly
 		_mPendingActors.clear();
 		for (auto iter = _mActors.begin(); iter != _mActors.end();)
 		{
-			if (iter->get()->IsPendingDestroy())
-			{
-				iter = _mActors.erase(iter);
-				// erase the Actor from the vector
-			}
-			else
-			{
+			/* Video 96 we drop this burden to clean cycle to make it efficent*/
+			//if (iter->get()->IsPendingDestroy())
+			//{
+			//	iter = _mActors.erase(iter);
+			//	// erase the Actor from the vector
+			//}
+			//else
+			//{
 				iter->get()->TickInternal(deltaTime);
 				++iter;
-			}
+			
 		}
 		Tick(deltaTime);
 	}
@@ -72,6 +73,24 @@ namespace ly
 	sf::Vector2u World::GetWindowsSize() const
 	{
 		return _mowningApp-> GetWindowSize();
+	}
+
+	void World::CleanCycle()
+	{
+		for (auto iter = _mActors.begin(); iter != _mActors.end();)
+		{
+			if (iter->get()->IsPendingDestroy())
+			{
+				iter = _mActors.erase(iter);
+				// erase the Actor from the vector
+			}
+
+			else
+			{
+				++iter;
+			}
+		}
+
 	}
 
 	void World::BeginPlay()

@@ -37,6 +37,9 @@ namespace ly {
 		// to queries from the application
 		sf::Vector2u GetWindowsSize() const;
 
+		// adding clean cycle function in Video96
+		void CleanCycle();
+
 	private:
 		void BeginPlay();
 		void Tick(float deltaTime);

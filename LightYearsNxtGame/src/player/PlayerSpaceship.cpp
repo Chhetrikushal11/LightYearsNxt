@@ -64,7 +64,7 @@ namespace ly
 	void PlayerSpaceShip::NormalizeInput()
 	{
 		Normalize(_mMoveInput); // since we are doing pass by reference we can use function_name(parameter_name)
-		LOG("Moveinput is now: %f, %f", _mMoveInput.x, _mMoveInput.y);
+		// LOG("Moveinput is now: %f, %f", _mMoveInput.x, _mMoveInput.y);
 	}
 	void PlayerSpaceShip::ClampInputOnEdge()
 	{

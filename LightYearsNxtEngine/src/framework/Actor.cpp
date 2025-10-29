@@ -119,9 +119,56 @@ namespace ly{
 		return _mowningWorld->GetWindowsSize();
 	}
 
+
 	void Actor::CenterPivot()
 	{
 		sf::FloatRect bound = _mSprite.getGlobalBounds();
 		_mSprite.setOrigin(bound.width / 2.f, bound.height / 2.f);
 	}
+
+	sf::FloatRect Actor::GetActorGlobalBounds() const
+	{
+		return _mSprite.getGlobalBounds();
+	}
+
+	bool Actor::IsActorOutofWindowBounds() const
+	{
+		float windowWidth = GetWorld()->GetWindowsSize().x;
+		float windowHeight = GetWorld()->GetWindowsSize().y;
+
+		float width = GetActorGlobalBounds().width;
+		float height = GetActorGlobalBounds().height;
+
+		sf::Vector2f actorPos = GetActorLocation();
+
+		if (actorPos.x < -width)
+		{
+			return true;
+
+		}
+
+		if (actorPos.x > windowWidth + width)
+		{
+			return true;
+
+		}
+
+		// longitudnal side
+		if (actorPos.y < -height)
+		{
+			return true;
+
+		}
+
+		if (actorPos.y > windowHeight + height)
+		{
+			return true;
+
+		}
+
+		return false;
+
+
+	}
+
 }

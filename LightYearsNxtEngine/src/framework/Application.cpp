@@ -69,6 +69,11 @@ namespace ly
 		{
 			_mCleanCycleClock.restart();
 			AssestManager::Get().CleanCycle();
+			// here we will make sure the bullet get destroyed so it doesnt destory in every other tick
+			if (currentWorld)
+			{
+				currentWorld->CleanCycle();
+			}
 		}
 	}
 	void Application::RenderInternal()
