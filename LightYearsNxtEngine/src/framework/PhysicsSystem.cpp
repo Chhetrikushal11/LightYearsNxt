@@ -22,6 +22,8 @@ namespace ly
 	}
 	void PhysicsSystem::Step(float deltaTime)
 	{
+		// video 102 we add clearing the listener from conatiners
+		ProcessPendingRemoveListeners();
 		// we are asking Step, it knows two steps deltaTime, how frequent you will update
 		_mPhysicsWorld.Step(deltaTime, _mVelocityIterations, _mPositionIterations);
 
@@ -57,8 +59,13 @@ namespace ly
 
 		void PhysicsSystem::RemoveListener(b2Body* bodyToRemove)
 		{
-			// TODO remove of the physics body
+			_mPendingRemoveListeners.insert(bodyToRemove);
 
+		}
+
+		void PhysicsSystem::Cleanup()
+		{
+			physicsSystem = std::move(unique<PhysicsSystem>{new PhysicsSystem});
 		}
 
 	PhysicsSystem::PhysicsSystem()
@@ -67,13 +74,23 @@ namespace ly
 		_mPhysicsScale{ 0.01f }, // here we are shrinking to work on Centimeter.
 		_mVelocityIterations{ 8 }, // for natural behavior it need to set at 8
 		_mPositionIterations{ 3 }, // for natural behavior it need to set at 3
-		_mContactListener{ }
+		_mContactListener{ },
+		_mPendingRemoveListeners{}
 
 	{
 		// need contact listener for contact happen
 		_mPhysicsWorld.SetContactListener(&_mContactListener);
 		_mPhysicsWorld.SetAllowSleeping(false);
 
+	}
+
+	void PhysicsSystem::ProcessPendingRemoveListeners()
+	{
+		for (auto listener : _mPendingRemoveListeners)
+		{
+			_mPhysicsWorld.DestroyBody(listener);
+		}
+		_mPendingRemoveListeners.clear();  // clearing the container
 	}
 
 	void PhysicsContactListener::BeginContact(b2Contact* contact)

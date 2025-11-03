@@ -34,12 +34,19 @@ namespace ly
 		testSpaceship.lock()->SetActorRotation(180.f);
 		//to set velocity
 		// since we are sending the velocity we will stop giving the velocity
-		/*testPlayerSpaceShip.lock()->SetVelocity(sf::Vector2f(0.f, -200.f));
-		counter = 0;*/
+		/*testPlayerSpaceShip.lock()->SetVelocity(sf::Vector2f(0.f, -200.f));*/
+		counter = 0.f;
 	}
 
 	void GameApplication::Tick(float deltaTime)
 	{
-
+		counter += deltaTime;
+		if (counter > 10.f)
+		{
+			if (!testPlayerSpaceShip.expired())
+			{
+				testPlayerSpaceShip.lock()->Destroy();
+			}
+		}
 	}
 }

@@ -30,6 +30,8 @@ namespace ly
 		virtual void Shoot() override;
 
 	private:
+
+
 			// to handle the input we need to create function to private function
 			void HandleInput();
 			sf::Vector2f _mMoveInput;
