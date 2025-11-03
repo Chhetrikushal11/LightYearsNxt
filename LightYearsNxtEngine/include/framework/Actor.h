@@ -6,8 +6,9 @@
 #include "framework/AssestManager.h"
 #include "framework/MathUtility.h"
 #include "framework/World.h"
-
+class b2Body;
 namespace ly {
+	// for physics body
 	// need to forward declare Application since it will own the world
 	class World;
 
@@ -55,8 +56,19 @@ namespace ly {
 
 		// to make sure the bullet gets destoryed if they are out of scope
 		bool IsActorOutofWindowBounds() const;
+
+		// allow the interface for physics
+		void SetEnablePhysics(bool enable);
+
+		virtual void OnActorBeginOverlap(Actor* other);
+		virtual void OnActorEndOverlap(Actor* other);
 	private:
-	
+		// to initialize physics
+		void InitializePhysics();
+		void UnInitializePhysics();
+		// to update location of the physics body
+		void UpdatePhysicsTransform();
+
 		World* _mowningWorld;
 		bool _mHasBeganPlay;
 
@@ -67,6 +79,11 @@ namespace ly {
 		// to make our actor at the centre
 		void CenterPivot();
 
+		// to make the physics body
+		b2Body* _mPhysicsBody;
+
+		bool _mPhysicsEnabled;
+		
 
 	
 

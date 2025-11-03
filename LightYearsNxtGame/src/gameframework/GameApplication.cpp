@@ -19,8 +19,8 @@ namespace ly
 	{
 		AssestManager::Get().SetAssetRootDirectory(GetResourceDir());
 		weak<World> newWorld = LoadWorld<World>();
-		newWorld.lock()->SpawnActor<Actor>();
-		newWorld.lock()->SpawnActor<Actor>();
+		/*newWorld.lock()->SpawnActor<Actor>();
+		newWorld.lock()->SpawnActor<Actor>();*/
 		testPlayerSpaceShip = newWorld.lock()->SpawnActor<PlayerSpaceShip>();
 		/*testPlayerSpaceShip.lock()->SetTexture("SpaceShooterRedux/PNG/playerShip1_blue.png");*/
 		// actorToDestroy.lock()->SetTexture("C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/LightYearsNxtGame/assets/SpaceShooterRedux/PNG/playerShip1_blue.png");
@@ -28,6 +28,10 @@ namespace ly
 		// for rotation
 		testPlayerSpaceShip.lock()->SetActorRotation(0.f);
 
+		weak<Spaceship> testSpaceship = newWorld.lock()->SpawnActor<Spaceship>();
+		testSpaceship.lock()->SetTexture("SpaceShooterRedux/PNG/playerShip2_blue.png");
+		testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
+		testSpaceship.lock()->SetActorRotation(180.f);
 		//to set velocity
 		// since we are sending the velocity we will stop giving the velocity
 		/*testPlayerSpaceShip.lock()->SetVelocity(sf::Vector2f(0.f, -200.f));

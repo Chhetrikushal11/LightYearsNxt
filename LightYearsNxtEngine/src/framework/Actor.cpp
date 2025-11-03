@@ -1,8 +1,10 @@
+#include <box2d/b2_body.h>
+
 #include "framework/Actor.h"
 #include "framework/core.h"
 #include "framework/World.h"
 #include "framework/MathUtility.h"
-#include "framework/World.h"
+#include "framework/PhysicsSystem.h"
 
 namespace ly{
 
@@ -10,7 +12,9 @@ namespace ly{
 		:_mowningWorld{owningWorld},
 		_mHasBeganPlay(false),
 		_mSprite{},
-		_mTexture{}
+		_mTexture{},
+		_mPhysicsBody{ nullptr },
+		_mPhysicsEnabled{false}
 
 	{
 		SetTexture(texturePath);
@@ -77,10 +81,12 @@ namespace ly{
 	{
 		// sprite can have location and our actor are represented by location
 		_mSprite.setPosition(newLoc);
+		UpdatePhysicsTransform();
 	}
 	void Actor::SetActorRotation(float newRot)
 	{
 		_mSprite.setRotation(newRot);
+		UpdatePhysicsTransform();
 	}
 	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmt)
 	{
@@ -169,6 +175,59 @@ namespace ly{
 		return false;
 
 
+	}
+
+	void Actor::SetEnablePhysics(bool enable)
+	{
+		_mPhysicsEnabled = enable;
+		if (_mPhysicsEnabled)
+		{
+			InitializePhysics();
+		}
+		else
+		{
+			UnInitializePhysics();
+		}
+	}
+
+	void Actor::OnActorBeginOverlap(Actor* other)
+	{
+		LOG( "OVERLAPPED." );
+	}
+
+	void Actor::OnActorEndOverlap(Actor* other)
+	{
+		LOG("OVERLAPPED FINISHED.");
+	}
+
+
+	void Actor::InitializePhysics()
+	{
+		if (!_mPhysicsBody)
+		{
+			_mPhysicsBody = PhysicsSystem::Get().AddListener(this);
+		}
+	}
+
+	void Actor::UnInitializePhysics()
+	{
+		if (_mPhysicsBody)
+		{
+			PhysicsSystem::Get().RemoveListener(_mPhysicsBody);
+		}
+	}
+
+	void Actor::UpdatePhysicsTransform()
+	{
+		if (_mPhysicsBody)
+		{
+			// need physics Scale
+			float physicsScale = PhysicsSystem::Get().GetPhysicsScale();
+			b2Vec2 pos(GetActorLocation().x * physicsScale, GetActorLocation().y * physicsScale);
+			float rotation = DegreeToRadians(GetActorRotation());
+
+			_mPhysicsBody->SetTransform(pos, rotation);
+		}
 	}
 
 }

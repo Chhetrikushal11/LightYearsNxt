@@ -16,6 +16,9 @@ namespace ly
 		// we need to override the Tick function
 		virtual void Tick(float deltaTime);
 
+		// to use physics system
+		virtual void BeginPlay() override;
+
 	private:
 		void Move(float deltaTime);
 		Actor* _mOwner;

@@ -22,6 +22,9 @@ namespace ly
 			// for shooting mechanics
 			virtual void Shoot();
 
+			// for using physics body
+			virtual void BeginPlay() override;
+
 
 
 	private:

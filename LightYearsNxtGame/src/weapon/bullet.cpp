@@ -30,6 +30,11 @@ namespace ly
 			Destroy();
 		}
 	}
+	void Bullet::BeginPlay()
+	{
+		Actor::BeginPlay();
+		SetEnablePhysics(true);
+	}
 	void Bullet::Move(float deltaTime)
 	{
 		// as we shoot we want to move the bullet in forward direction
