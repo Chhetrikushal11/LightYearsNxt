@@ -29,7 +29,9 @@ using Dictionary = std::unordered_map<keyType, valType, hasher>;
 template<typename T>
 using Set = std::unordered_set<T>; // gurantee to have unique elements.
 
+using uint8 = unsigned char; // takes the 8 bit data 
 
+// a macro
 #define LOG(M, ...) printf(M "\n", ##__VA_ARGS__)
 
 }

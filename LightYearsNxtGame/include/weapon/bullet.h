@@ -1,6 +1,8 @@
 #pragma once
 
 #include "framework/Actor.h"
+#include "framework/core.h"
+#include "framework/World.h"
 
 namespace ly
 {
@@ -20,6 +22,7 @@ namespace ly
 		virtual void BeginPlay() override;
 
 	private:
+		virtual void OnActorBeginOverlap(Actor* other) override;
 		void Move(float deltaTime);
 		Actor* _mOwner;
 		float _mSpeed;

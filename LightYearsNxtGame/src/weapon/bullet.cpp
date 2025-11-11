@@ -1,15 +1,17 @@
 #include "weapon/bullet.h"
-#include "framework/core.h"
-#include "framework/World.h"
+
 namespace ly
 {
 	// constructor wise we need to call Actor constructor along with the bullet constructor
+
+
 	Bullet::Bullet(World* world, Actor* owner, const std::string& texturePath, float speed, float damage)
 		:Actor{world, texturePath},
 		_mOwner{owner},
 		_mSpeed{speed},
 		_mDamage{damage}
 	{
+		SetTeamID(owner->GetTeamID());
 	}
 	void Bullet::SetSpeed(float newSpeed)
 	{
@@ -25,7 +27,7 @@ namespace ly
 	{
 		Actor::Tick(deltaTime);
 		Move(deltaTime);
-		if (IsActorOutofWindowBounds())
+		if (IsActorOutofWindowBounds(GetActorGlobalBounds().width))
 		{
 			Destroy();
 		}
@@ -34,6 +36,13 @@ namespace ly
 	{
 		Actor::BeginPlay();
 		SetEnablePhysics(true);
+	}
+	void Bullet::OnActorBeginOverlap(Actor* other)
+	{
+		if (IsOtherHostile(other))
+		{
+			other->ApplyDamage(GetDamage());
+		}
 	}
 	void Bullet::Move(float deltaTime)
 	{

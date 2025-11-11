@@ -7,17 +7,15 @@
 
 namespace ly
 {
-	class Actor;
-	class Spaceship;
-	class PlayerSpaceship;
+	//class Actor;
+	//class Spaceship;
+	//class PlayerSpaceship;
 	class GameApplication : public Application
 	{
 	public:
 		GameApplication();
-		virtual void Tick(float deltaTime) override;
+		/*virtual void Tick(float deltaTime) override;*/
 
-	private:
-		weak<PlayerSpaceShip> testPlayerSpaceShip;
-		float counter;
+		
 	};
 }

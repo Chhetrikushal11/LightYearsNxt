@@ -14,7 +14,8 @@ namespace ly{
 		_mSprite{},
 		_mTexture{},
 		_mPhysicsBody{ nullptr },
-		_mPhysicsEnabled{false}
+		_mPhysicsEnabled{false},
+		_mTeamID{GetNeutralTeamID()}
 
 	{
 		SetTexture(texturePath);
@@ -137,7 +138,7 @@ namespace ly{
 		return _mSprite.getGlobalBounds();
 	}
 
-	bool Actor::IsActorOutofWindowBounds() const
+	bool Actor::IsActorOutofWindowBounds(float allowance = 10.0f) const
 	{
 		float windowWidth = GetWorld()->GetWindowsSize().x;
 		float windowHeight = GetWorld()->GetWindowsSize().y;
@@ -147,26 +148,26 @@ namespace ly{
 
 		sf::Vector2f actorPos = GetActorLocation();
 
-		if (actorPos.x < -width)
+		if (actorPos.x < -width - allowance)
 		{
 			return true;
 
 		}
 
-		if (actorPos.x > windowWidth + width)
+		if (actorPos.x > windowWidth + width + allowance)
 		{
 			return true;
 
 		}
 
 		// longitudnal side
-		if (actorPos.y < -height)
+		if (actorPos.y < -height + allowance)
 		{
 			return true;
 
 		}
 
-		if (actorPos.y > windowHeight + height)
+		if (actorPos.y > windowHeight + height + allowance)
 		{
 			return true;
 
@@ -192,12 +193,12 @@ namespace ly{
 
 	void Actor::OnActorBeginOverlap(Actor* other)
 	{
-		LOG( "OVERLAPPED." );
+		
 	}
 
 	void Actor::OnActorEndOverlap(Actor* other)
 	{
-		LOG("OVERLAPPED FINISHED.");
+		
 	}
 
 	void Actor::Destroy()
@@ -207,6 +208,23 @@ namespace ly{
 
 	}
 
+
+	bool Actor::IsOtherHostile(Actor* other) const
+	{
+		if (other == nullptr) return false;
+
+		if (GetTeamID() == GetNeutralTeamID() || other->GetTeamID() == GetNeutralTeamID())
+		{
+			return false;
+		}
+
+		return GetTeamID() != other->GetTeamID();
+	}
+
+	void Actor::ApplyDamage(float amt)
+	{
+
+	}
 
 	void Actor::InitializePhysics()
 	{
