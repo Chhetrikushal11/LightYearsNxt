@@ -4,6 +4,7 @@
 #include "framework/World.h"
 #include "framework/AssestManager.h"
 #include "framework/PhysicsSystem.h"
+#include "framework/TimerManager.h"
 namespace ly
 {
 
@@ -65,6 +66,8 @@ namespace ly
 			
 			currentWorld->TickInternal(deltaTime);
 		}
+
+		TimerManager::Get().UpdateTimer(deltaTime);
 		PhysicsSystem::Get().Step(deltaTime);
 
 		if (_mCleanCycleClock.getElapsedTime().asSeconds() >= _mCleanCycleInterval)

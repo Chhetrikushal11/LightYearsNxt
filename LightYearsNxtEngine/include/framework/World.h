@@ -1,9 +1,11 @@
 #pragma once
 #include "framework/core.h"
+#include "framework/Object.h"
 #include <SFML/Graphics.hpp>
 
 
 namespace ly {
+	// video 114 we : public Object
 	// need to forward declare Application since it will own the world
 	// Inherit from: 
 	class Application;
@@ -15,7 +17,8 @@ namespace ly {
 	// Owner of the class
 	class Actor;
 
-	class World {
+	class World : public Object
+	{
 	public:
 		World(Application* owningApp);
 
@@ -41,8 +44,8 @@ namespace ly {
 		void CleanCycle();
 
 	private:
-		void BeginPlay();
-		void Tick(float deltaTime);
+		virtual void BeginPlay();
+		virtual void Tick(float deltaTime);
 		Application* _mowningApp;
 		bool _mBeganPlay;
 

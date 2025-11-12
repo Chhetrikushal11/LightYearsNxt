@@ -3,10 +3,13 @@
 #include "spaceship/spaceship.h"
 #include "framework/AssestManager.h"
 #include "player/PlayerSpaceship.h"
+#include "framework/TimerManager.h"
 #include "Enemy/Vanguard.h"
 
 namespace ly
 {
+
+
 	GameLevelOne::GameLevelOne(Application* owningApp)
 		: World{owningApp}
 	{
@@ -20,5 +23,16 @@ namespace ly
 
 		weak<Vanguard> testSpaceship = SpawnActor<Vanguard>();
 		testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
+
 	}
+	void GameLevelOne::BeginPlay()
+	{
+		TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallBack_Test, 10);
+	}
+	void GameLevelOne::TimerCallBack_Test()
+	{
+		LOG("CallBack called!!");
+		// how they are intertwined with Callback
+	}
+
 }

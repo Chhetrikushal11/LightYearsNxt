@@ -1,9 +1,12 @@
 #pragma once
- 
+
 #include "framework/World.h"
 
 namespace ly
 {	
+
+
+
 	class PlayerSpaceShip;
 	class GameLevelOne : public World
 	{
@@ -11,6 +14,8 @@ namespace ly
 		GameLevelOne(Application* owningApp);
 
 	private:
+		virtual void BeginPlay() override;
+		void TimerCallBack_Test();
 		weak<PlayerSpaceShip> testPlayerSpaceShip;
 	};
 }
