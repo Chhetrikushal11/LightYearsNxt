@@ -5,6 +5,8 @@
 #include "player/PlayerSpaceship.h"
 #include "framework/TimerManager.h"
 #include "Enemy/Vanguard.h"
+#include "gameplay/GameStage.h"
+#include "Enemy/VanguardStage.h"
 
 namespace ly
 {
@@ -21,18 +23,24 @@ namespace ly
 		// for rotation
 		testPlayerSpaceShip.lock()->SetActorRotation(0.f);
 
-		weak<Vanguard> testSpaceship = SpawnActor<Vanguard>();
-		testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
+		//weak<Vanguard> testSpaceship = SpawnActor<Vanguard>();
+		//testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
 
 	}
 	void GameLevelOne::BeginPlay()
 	{
-		TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallBack_Test, 10);
+		/*timerHandle_Test = TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallBack_Test, 2, true);*/
 	}
-	void GameLevelOne::TimerCallBack_Test()
+	//void GameLevelOne::TimerCallBack_Test()
+	//{
+	//	LOG("CallBack called!!");
+	//	TimerManager::Get().ClearTimer(timerHandle_Test);
+	//	// how they are intertwined with Callback
+	//}
+
+	void GameLevelOne::InitGameStages()
 	{
-		LOG("CallBack called!!");
-		// how they are intertwined with Callback
+		AddStage(shared<VanguardStage>{new VanguardStage{ this }});
 	}
 
 }

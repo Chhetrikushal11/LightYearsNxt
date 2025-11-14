@@ -16,6 +16,9 @@ namespace ly {
 	
 	// Owner of the class
 	class Actor;
+	 
+	// need to forward declare the gamestages
+	class GameStage;
 
 	class World : public Object
 	{
@@ -43,6 +46,9 @@ namespace ly {
 		// adding clean cycle function in Video96
 		void CleanCycle();
 
+		// need to have a way to add stages
+		void AddStage(const shared<GameStage>& newStage);
+
 	private:
 		virtual void BeginPlay();
 		virtual void Tick(float deltaTime);
@@ -62,6 +68,14 @@ namespace ly {
 
 		List<shared<Actor>> _mPendingActors;
 
+
+		// need to make the list for game stages
+		List<shared<GameStage>> _mGameStages;
+
+		int _mCurrentStageIndex;
+		virtual void InitGameStages();
+		virtual void AllGameStageFinished();
+		void NextGameStage();
 
 
 	};

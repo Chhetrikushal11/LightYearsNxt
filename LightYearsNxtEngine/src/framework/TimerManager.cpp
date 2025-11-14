@@ -1,7 +1,13 @@
 #include "framework/TimerManager.h"
 
 namespace ly
-{
+{	
+	unsigned int TimerHandle::timerKeyCounter = 0;
+	TimerHandle::TimerHandle()
+		: _mTimerKey{GetNextTimerKey()}
+	{
+
+	}
 	Timer::Timer(weak<Object> weakRef, std::function<void()> callback, float duration, bool repeat)
 		: _mlistener{ weakRef, callback },
 		_mDuration{ duration },
@@ -45,16 +51,29 @@ namespace ly
 		_mIsExpired = true;
 
 	}
-
+	
 	unique<TimerManager> TimerManager::_mtimerManager{ nullptr };
+
 
 	void TimerManager::UpdateTimer(float deltaTime)
 	{
-		for (Timer& timer:_mTimers)
+		for (auto iter = _mTimers.begin(); iter != _mTimers.end();)
 		{
-			timer.TickTime(deltaTime);
+			if (iter->second.Expired())
+			{
+				iter = _mTimers.erase(iter);
+			}
+			
+			else
+			{
+				iter->second.TickTime(deltaTime);
+				++iter;
+			}
 		}
+
 	}
+
+
 
 	TimerManager::TimerManager()
 		:_mTimers{}
@@ -72,5 +91,19 @@ namespace ly
 		return *_mtimerManager;
 	}
 
+	void TimerManager::ClearTimer(TimerHandle timerHandle)
+	{
+		auto iter = _mTimers.find(timerHandle);
+		if (iter != _mTimers.end())
+		{
+			iter->second.SetExpired();
+		}
+	}
+
+
+	bool operator==(const TimerHandle& lhs, const TimerHandle& rhs)
+	{
+		return lhs.GetTimerKey() == rhs.GetTimerKey();
+	}
 
 }
