@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+#include "Enemy/Vanguard.h"
 #include "gameplay/GameStage.h"
 #include "framework/TimerManager.h"
 

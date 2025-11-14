@@ -32,7 +32,7 @@ namespace ly
 	{
 		TimerManager::Get().ClearTimer(_mSpawnTimerHandle);
 		TimerManager::Get().ClearTimer(_mSwitchTimerHandle);
-
+		LOG("STAGE FINISHED.");
 	}
 	void VanguardStage::SpawnVanguard()
 	{
