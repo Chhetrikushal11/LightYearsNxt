@@ -1,5 +1,6 @@
 #include "Enemy/VanguardStage.h"
 #include "Enemy/Vanguard.h"
+#include "Enemy/Hexagon.h"
 #include "framework/World.h"
 
 

@@ -12,8 +12,8 @@ namespace ly
 		_mBeganPlay(false),
 		_mActors{},
 		_mPendingActors{},
-		_mCurrentStageIndex{-1},
-		_mGameStages{}
+		_mGameStages{},
+		_mCurrentStage{_mGameStages.end()}
 	{
 
 	}
@@ -43,9 +43,9 @@ namespace ly
 			
 		}
 
-		if (_mCurrentStageIndex >= 0 && _mCurrentStageIndex < _mGameStages.size())
+		if (_mCurrentStage != _mGameStages.end())
 		{
-			_mGameStages[_mCurrentStageIndex]->TickStage(deltaTime);
+			_mCurrentStage->get()->TickStage(deltaTime);
 		}
 		Tick(deltaTime);
 	}
@@ -64,7 +64,7 @@ namespace ly
 			_mBeganPlay = true;
 			BeginPlay();
 			InitGameStages();
-			NextGameStage();
+			StartStages();
 
 		}
 	}
@@ -87,15 +87,16 @@ namespace ly
 
 	void World::AllGameStageFinished()
 	{
+		LOG("All Stage Finished.");
 	}
 
 	void World::NextGameStage()
 	{
-		++_mCurrentStageIndex;
-		if (_mCurrentStageIndex >= 0 && _mCurrentStageIndex < _mGameStages.size())
+		_mCurrentStage = _mGameStages.erase(_mCurrentStage);
+		if (_mCurrentStage != _mGameStages.end())
 		{
-			_mGameStages[_mCurrentStageIndex]->onStageFinished.BindAction(GetWeakRef(), &World::NextGameStage);
-			_mGameStages[_mCurrentStageIndex]->StartStage();
+			_mCurrentStage->get()->StartStage();
+			_mCurrentStage->get()->onStageFinished.BindAction(GetWeakRef(), &World::NextGameStage);
 		}
 
 		else
@@ -103,6 +104,8 @@ namespace ly
 			AllGameStageFinished();
 		}
 	}
+
+
 
 	sf::Vector2u World::GetWindowsSize() const
 	{
@@ -125,18 +128,6 @@ namespace ly
 			}
 		}
 
-		// cleaning the game stages
-		for (auto iter = _mGameStages.begin(); iter != _mGameStages.end();)
-		{
-			if (iter->get()->IsStageFinished())
-			{
-				iter = _mGameStages.erase(iter);
-			}
-			else
-			{
-				++iter;
-			}
-		}
 
 	}
 
@@ -148,5 +139,12 @@ namespace ly
 	void World::BeginPlay()
 	{
 		// LOG("Begin the play");
+	}
+
+	void World::StartStages()
+	{
+		_mCurrentStage = _mGameStages.begin();
+		_mCurrentStage->get()->StartStage();
+		_mCurrentStage->get()->onStageFinished.BindAction(GetWeakRef(), &World::NextGameStage);
 	}
 }

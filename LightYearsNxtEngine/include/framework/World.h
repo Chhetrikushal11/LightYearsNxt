@@ -71,12 +71,14 @@ namespace ly {
 
 		// need to make the list for game stages
 		List<shared<GameStage>> _mGameStages;
-
+		
+		// making list the iterator
+		List<shared<GameStage>>::iterator _mCurrentStage;
 		int _mCurrentStageIndex;
 		virtual void InitGameStages();
 		virtual void AllGameStageFinished();
 		void NextGameStage();
-
+		void World::StartStages();
 
 	};
 

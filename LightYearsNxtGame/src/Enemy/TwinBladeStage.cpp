@@ -6,7 +6,7 @@ namespace ly
 	TwinBladeStage::TwinBladeStage(World* world)
 		:GameStage{ world },
 		_mSpawnInterval{ 2.f },
-		_mSpawnDistanceToCenter{ 100.f },
+		_mSpawnDistanceToCenter{ 10.f },
 		_mLeftSpawnLoc{ world->GetWindowsSize().x/2 -_mSpawnDistanceToCenter ,100.f },
 		_mRightSpawnLoc{ world->GetWindowsSize().x/2 + _mSpawnDistanceToCenter,100.f },
 		_mSpawnLoc{ _mLeftSpawnLoc },
