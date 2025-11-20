@@ -28,7 +28,7 @@ namespace ly
 		int _mCurrentSpawnCount;
 
 		void SpawnTwinBlade();
-		virtual void StageFinshed();
+		virtual void StageFinished();
 
 	};
 }

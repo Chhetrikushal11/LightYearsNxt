@@ -10,6 +10,7 @@
 #include "Enemy/VanguardStage.h"
 #include "Enemy/TwinBladeStage.h"
 #include "Enemy/HexagonStage.h"
+#include "Enemy/UFOStage.h"
 
 namespace ly
 {
@@ -48,7 +49,10 @@ namespace ly
 		//AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
 		//AddStage(shared<TwinBladeStage>{new TwinBladeStage{ this }});
 		//AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
-		AddStage(shared<HexagonStage>{new HexagonStage{ this }});
+		//AddStage(shared<HexagonStage>{new HexagonStage{ this }});
+
+		//AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
+		AddStage(shared<UFOStage>{new UFOStage{ this }});
 	}
 
 }

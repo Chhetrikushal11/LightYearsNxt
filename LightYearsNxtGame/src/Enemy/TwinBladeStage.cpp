@@ -42,7 +42,7 @@ namespace ly
 		}
 	}
 
-	void TwinBladeStage::StageFinshed()
+	void TwinBladeStage::StageFinished()
 	{
 		TimerManager::Get().ClearTimer(_mSpawnTimerHandle);
 		LOG("STAGE FINISHED.");
