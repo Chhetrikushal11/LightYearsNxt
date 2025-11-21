@@ -6,12 +6,13 @@
 // to handle the input 
 #include "SFML/System.hpp"
 #include "weapon/bulletshooter.h"
+#include "weapon/ThreeWayShooter.h"
 
 
 
 namespace ly
 {
-	class BulletShooter;
+	class Shooter;
 	class PlayerSpaceShip : public Spaceship
 	{
 	public:
@@ -49,7 +50,7 @@ namespace ly
 			float _mSpeed;
 
 			// for shooting
-			unique<BulletShooter> _mShooter;
+			unique<Shooter> _mShooter;
 			
 
 	};
