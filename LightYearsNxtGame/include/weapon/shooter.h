@@ -13,6 +13,15 @@ namespace ly
 		virtual bool InOnCooldown() const { return false; }
 
 		Actor* GetOwner() const {return _mOwner;}
+
+		int GetCurrentLevel() const { return _mCurrentLevel; }
+
+		int GetMaxLevel() const { return _mMaxLevel; }
+
+		virtual void IncrementLevel(int amt = 1);
+
+
+
 	protected:
 		// to make this class abstract class we will keep the constructor in protected section
 		Shooter(Actor* owner);
@@ -20,5 +29,8 @@ namespace ly
 	private:
 		virtual void ShootImpl() = 0;
 		Actor* _mOwner;
+
+		int _mCurrentLevel;
+		int _mMaxLevel;
 	};
 }

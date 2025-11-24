@@ -16,6 +16,7 @@ namespace ly
 			const std::string& bulletTexturePath = "SpaceShooterRedux/PNG/Lasers/laserBlue01.png");
 		virtual bool InOnCooldown() const override;
 		void SetBulletTexturePath(const std::string& newBulletTexturePath);
+		virtual void IncrementLevel(int amt) override;
 	private:
 		
 		virtual void ShootImpl() override;

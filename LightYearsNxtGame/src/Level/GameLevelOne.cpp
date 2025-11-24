@@ -44,12 +44,12 @@ namespace ly
 
 	void GameLevelOne::InitGameStages()
 	{
-		AddStage(shared<WaitStage>{new WaitStage{ this, 2.5f }});
+		AddStage(shared<WaitStage>{new WaitStage{ this, 0.5f }});
 	    AddStage(shared<VanguardStage>{new VanguardStage{ this }});
 		AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
 		AddStage(shared<TwinBladeStage>{new TwinBladeStage{ this }});
 		AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
-		AddStage(shared<HexagonStage>{new HexagonStage{ this }});
+		AddStage(shared<HexagonStage>{new HexagonStage{ this }});              
 
 		AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
 		AddStage(shared<UFOStage>{new UFOStage{ this }});

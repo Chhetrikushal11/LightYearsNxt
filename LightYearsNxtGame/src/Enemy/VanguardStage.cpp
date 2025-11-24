@@ -10,7 +10,7 @@ namespace ly
 		:GameStage{ world },
 		_mSpawnInterval{ 2.f },
 		_mSwitchInterval{ 6.f },
-		_mSpawnDistanceToEdge{ 100.f },
+		_mSpawnDistanceToEdge{ 365.f },
 		_mLeftSpawnLoc{ 0.0f,0.0f },
 		_mRightSpawnLoc{ 0.0f,0.0f },
 		_mSpawnLoc{ 0.0f,0.0f },
@@ -25,8 +25,8 @@ namespace ly
 	void VanguardStage::StartStage()
 	{
 		auto windowSize = GetWorld()->GetWindowsSize();
-		_mLeftSpawnLoc = sf::Vector2f{ _mSpawnDistanceToEdge,  100.f };
-		_mRightSpawnLoc = sf::Vector2f{windowSize.x - _mSpawnDistanceToEdge,  100.f };
+		_mLeftSpawnLoc = sf::Vector2f{ windowSize.x / 2.f - _mSpawnDistanceToEdge/2.f,windowSize.y/2.f - _mSpawnDistanceToEdge};
+		_mRightSpawnLoc = sf::Vector2f{ windowSize.x / 2.f + _mSpawnDistanceToEdge / 2.f,windowSize.y / 2.f - _mSpawnDistanceToEdge };
 		SwitchRow();
 	}
 	void VanguardStage::StageFinished()

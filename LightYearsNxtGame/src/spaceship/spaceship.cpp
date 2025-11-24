@@ -98,4 +98,7 @@ namespace ly
 		Destroy();
 		delete exp;
 	}
+	void Spaceship::Blew()
+	{
+	}
 }

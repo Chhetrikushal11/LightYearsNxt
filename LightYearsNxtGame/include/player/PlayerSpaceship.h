@@ -29,7 +29,8 @@ namespace ly
 
 		// for shooting mechanics
 		virtual void Shoot() override;
-
+		// for chaning shooting style
+		void SetShooter(unique<Shooter>&& newShooter);
 	private:
 
 

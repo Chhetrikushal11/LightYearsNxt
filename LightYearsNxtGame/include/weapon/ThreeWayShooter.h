@@ -13,7 +13,10 @@ namespace ly
 		BulletShooter _mShooterLeft;
 		BulletShooter _mShooterMid;
 		BulletShooter _mShooterRight;
+		BulletShooter _mTopLevelShooterLeft;
+		BulletShooter _mTopLevelShooterRight;
 
+		virtual void IncrementLevel(int amt) override;
 	private:
 		virtual void ShootImpl();
 	};
