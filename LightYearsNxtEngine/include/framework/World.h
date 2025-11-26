@@ -1,13 +1,16 @@
 #pragma once
+#include <SFML/Graphics.hpp>
+
 #include "framework/core.h"
 #include "framework/Object.h"
-#include <SFML/Graphics.hpp>
+
 
 
 namespace ly {
 	// video 114 we : public Object
 	// need to forward declare Application since it will own the world
 	// Inherit from: 
+	
 	class Application;
 
 	// since the world should be able to spawn the actor
@@ -16,7 +19,7 @@ namespace ly {
 	
 	// Owner of the class
 	class Actor;
-	 
+	class HUD;
 	// need to forward declare the gamestages
 	class GameStage;
 
@@ -40,6 +43,10 @@ namespace ly {
 		template <typename ActorType, typename... Args>
 		weak<ActorType> SpawnActor(Args... args);
 
+		// for hud
+		template<typename HUDType, typename ... Args>
+		weak<HUD> SpawnHUD(Args... args);
+
 		// to queries from the application
 		sf::Vector2u GetWindowsSize() const;
 
@@ -48,10 +55,11 @@ namespace ly {
 
 		// need to have a way to add stages
 		void AddStage(const shared<GameStage>& newStage);
-
+		bool DispatchEvent(const sf::Event& event);
 	private:
 		virtual void BeginPlay();
 		virtual void Tick(float deltaTime);
+		void RenderHUD(sf::RenderWindow& window);
 		Application* _mowningApp;
 		bool _mBeganPlay;
 
@@ -72,6 +80,9 @@ namespace ly {
 		// need to make the list for game stages
 		List<shared<GameStage>> _mGameStages;
 		
+		// creating the list for the HUD
+		shared<HUD> _mHUD;
+		
 		// making list the iterator
 		List<shared<GameStage>>::iterator _mCurrentStage;
 		int _mCurrentStageIndex;
@@ -89,6 +100,14 @@ namespace ly {
 		_mPendingActors.push_back(newActor);
 		return newActor;
 
+	}
+
+	template<typename HUDType, typename ...Args>
+	inline weak<HUD> World::SpawnHUD(Args ...args)
+	{
+		shared<HUDType> newHUD{ new HUDTYPE(args...) };
+		_mHUD = newHUD;
+		return newHUD;
 	}
 
 }

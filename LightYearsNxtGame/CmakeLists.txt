@@ -33,9 +33,17 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
  ${CMAKE_CURRENT_SOURCE_DIR}/include/player/PlayerSpaceship.h
  ${CMAKE_CURRENT_SOURCE_DIR}/src/player/PlayerSpaceship.cpp
 
+ #for player manager
+ ${CMAKE_CURRENT_SOURCE_DIR}/include/player/PlayerManager.h
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/player/PlayerManager.cpp
+
 # for reward
  ${CMAKE_CURRENT_SOURCE_DIR}/include/player/Reward.h
  ${CMAKE_CURRENT_SOURCE_DIR}/src/player/Reward.cpp
+
+ # for spawning new player
+ ${CMAKE_CURRENT_SOURCE_DIR}/include/player/player.h
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/player/player.cpp
  
  # for Vanguard gamestage
  ${CMAKE_CURRENT_SOURCE_DIR}/include/Enemy/VanguardStage.h

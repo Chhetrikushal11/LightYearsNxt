@@ -11,7 +11,7 @@ namespace ly
 	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
 		: _mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style},
 		_mtargetFrameRate(60.f),
-		_mTickClock(), currentWorld{ nullptr },
+		_mTickClock(), _mCurrentWorld{ nullptr },
 		_mCleanCycleClock{},
 		_mCleanCycleInterval{2.f}
 	{
@@ -36,6 +36,10 @@ namespace ly
 				{
 					_mWindow.close();
 				}
+				else
+				{
+					DispatchEvent(windowEvent);
+				}
 
 			}
 			// to find the time elapsed we update the accumulatedTime
@@ -57,14 +61,21 @@ namespace ly
 	{
 		return _mWindow.getSize();
 	}
+	bool Application::DispatchEvent(const sf::Event& event)
+	{
+		if(_mCurrentWorld)
+		{ 
+			return _mCurrentWorld->DispatchEvent(event);
+		}
+	}
 	void Application::TickInternal(float deltaTime)
 	{
 
 		Tick(deltaTime);
-		if (currentWorld)
+		if (_mCurrentWorld)
 		{
 			
-			currentWorld->TickInternal(deltaTime);
+			_mCurrentWorld->TickInternal(deltaTime);
 		}
 
 		TimerManager::Get().UpdateTimer(deltaTime);
@@ -75,9 +86,9 @@ namespace ly
 			_mCleanCycleClock.restart();
 			AssestManager::Get().CleanCycle();
 			// here we will make sure the bullet get destroyed so it doesnt destory in every other tick
-			if (currentWorld)
+			if (_mCurrentWorld)
 			{
-				currentWorld->CleanCycle();
+				_mCurrentWorld->CleanCycle();
 			}
 		}
 	}
@@ -93,9 +104,9 @@ namespace ly
 	}
 	void Application::Render()
 	{
-		if (currentWorld)
+		if (_mCurrentWorld)
 		{
-			currentWorld->Render(_mWindow);
+			_mCurrentWorld->Render(_mWindow);
 		}
 	}
 	void Application::Tick(float deltaTime)

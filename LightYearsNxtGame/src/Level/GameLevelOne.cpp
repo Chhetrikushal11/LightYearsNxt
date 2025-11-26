@@ -1,5 +1,5 @@
 #include "Level/GameLevelOne.h"
-#include <framework/Actor.h>
+#include "framework/Actor.h"
 #include "spaceship/spaceship.h"
 #include "framework/AssestManager.h"
 #include "player/PlayerSpaceship.h"
@@ -11,6 +11,7 @@
 #include "Enemy/TwinBladeStage.h"
 #include "Enemy/HexagonStage.h"
 #include "Enemy/UFOStage.h"
+#include "player/PlayerManager.h"
 
 namespace ly
 {
@@ -20,12 +21,12 @@ namespace ly
 		: World{owningApp}
 	{
 
-		testPlayerSpaceShip = SpawnActor<PlayerSpaceShip>();
+		// testPlayerSpaceShip = SpawnActor<PlayerSpaceShip>();
 		/*testPlayerSpaceShip.lock()->SetTexture("SpaceShooterRedux/PNG/playerShip1_blue.png");*/
 		// actorToDestroy.lock()->SetTexture("C:/Users/kbasnet/Desktop/C++/CompleteGameDevSeries/LightYearsNxt/LightYearsNxtGame/assets/SpaceShooterRedux/PNG/playerShip1_blue.png");
-		testPlayerSpaceShip.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f));
+		// testPlayerSpaceShip.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f));
 		// for rotation
-		testPlayerSpaceShip.lock()->SetActorRotation(0.f);
+		/*testPlayerSpaceShip.lock()->SetActorRotation(0.f);*/
 
 		//weak<Vanguard> testSpaceship = SpawnActor<Vanguard>();
 		//testSpaceship.lock()->SetActorLocation(sf::Vector2f(100.f, 50.f));
@@ -33,7 +34,10 @@ namespace ly
 	}
 	void GameLevelOne::BeginPlay()
 	{
-		/*timerHandle_Test = TimerManager::Get().SetTimer(GetWeakRef(), &GameLevelOne::TimerCallBack_Test, 2, true);*/
+		Player newPlayer = PlayerManager::Get().CreateNewPlayer();
+		_mPlayerSpaceShip = newPlayer.SpawnSpaceship(this);
+		_mPlayerSpaceShip.lock()->SetActorRotation(0.f);
+		_mPlayerSpaceShip.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameLevelOne::PlayerSpaceShipDestroyed);
 	}
 	//void GameLevelOne::TimerCallBack_Test()
 	//{
@@ -41,6 +45,20 @@ namespace ly
 	//	TimerManager::Get().ClearTimer(timerHandle_Test);
 	//	// how they are intertwined with Callback
 	//}
+
+	void GameLevelOne::PlayerSpaceShipDestroyed(Actor* destroyedPalyerSpaceship)
+	{
+		_mPlayerSpaceShip = PlayerManager::Get().GetPlayer()->SpawnSpaceship(this);
+		_mPlayerSpaceShip.lock()->SetActorRotation(0.f);
+		if (!_mPlayerSpaceShip.expired())
+		{
+			_mPlayerSpaceShip.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameLevelOne::PlayerSpaceShipDestroyed);
+		}
+		else
+		{
+			GameOver();
+		}
+	}
 
 	void GameLevelOne::InitGameStages()
 	{
@@ -53,6 +71,11 @@ namespace ly
 
 		AddStage(shared<WaitStage>{new WaitStage{ this, 15.f }}); // waiting 15seconds
 		AddStage(shared<UFOStage>{new UFOStage{ this }});
+	}
+
+	void GameLevelOne::GameOver()
+	{
+		LOG("==========Game Over================!!");
 	}
 
 }

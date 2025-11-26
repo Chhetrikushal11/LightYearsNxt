@@ -19,41 +19,16 @@ namespace ly
 	}
 	shared<sf::Texture> AssestManager::LoadTexture(const std::string& path)
 	{
-		auto found = _mLoadedTextureMap.find(path);
-		if (found != _mLoadedTextureMap.end())
-		{
-			return found->second; // the second is value which is the texture
-			// this code will prevent the load of copy of the same exact path.
-
-
-		}
-
-		// if cannot find the already loaded
-		// here we are creating key name newTexture which will hold the value of newTexture stored in the dictionary
-		shared<sf::Texture> newTexture{ new sf::Texture };
-			if (newTexture->loadFromFile(_mRootDirectory + path))
-			{
-				_mLoadedTextureMap.insert({ path, newTexture });
-				return newTexture;
-			}
-
-			// now if we cant load anything
-			return shared<sf::Texture> {nullptr}; // returning the dummy one
+		return LoadAssest(path, _mLoadedTextureMap);
+	}
+	shared<sf::Font> AssestManager::LoadFont(const std::string& path)
+	{
+		return LoadAssest(path, _mLoadedFontMap);
 	}
 	void AssestManager::CleanCycle()
 	{
-		for (auto iter = _mLoadedTextureMap.begin(); iter != _mLoadedTextureMap.end();)
-		{
-			if (iter->second.unique()) // if the assest manager is only one holding. Which means it is no longer needed.
-			{
-				LOG("cleaning texture:%s", iter->first.c_str());
-				iter = _mLoadedTextureMap.erase(iter);
-			}
-			else
-			{
-				++iter;
-			}
-		}
+		CleanUniqueRef(_mLoadedTextureMap);
+		CleanUniqueRef(_mLoadedFontMap);
 	}
 	void AssestManager::SetAssetRootDirectory(const std::string& directory)
 	{

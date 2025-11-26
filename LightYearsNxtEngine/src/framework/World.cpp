@@ -4,6 +4,7 @@
 #include "framework/Object.h"
 #include "framework/Application.h"
 #include "gameplay/GameStage.h"
+#include "widget/HUD.h"
 
 namespace ly
 {
@@ -48,6 +49,11 @@ namespace ly
 			_mCurrentStage->get()->TickStage(deltaTime);
 		}
 		Tick(deltaTime);
+
+		if (_mHUD && _mHUD->HasInit())
+		{
+			_mHUD->NativeInit(_mowningApp->GetWindow());
+		}
 	}
 
 	void World::Render(sf::RenderWindow& window)
@@ -56,6 +62,8 @@ namespace ly
 		{
 			actor->Render(window);
 		}
+
+		RenderHUD(window);
 	}
 
 	void World::BeginPlayInternal()
@@ -77,6 +85,14 @@ namespace ly
 	void World::Tick(float deltaTime)
 	{
 		// LOG("Tick at the frame rate %f", 1.f/deltaTime);
+	}
+
+	void World::RenderHUD(sf::RenderWindow& window)
+	{
+		if (_mHUD)
+		{
+			_mHUD->Draw(window);
+		}
 	}
 
 	void World::InitGameStages()
@@ -134,6 +150,14 @@ namespace ly
 	void World::AddStage(const shared<GameStage>& newStage)
 	{
 		_mGameStages.push_back(newStage);
+	}
+
+	bool World::DispatchEvent(const sf:: Event & event)
+	{
+		if (_mHUD)
+		{
+			return _mHUD->HandleEvent(event);
+		}
 	}
 
 	void World::BeginPlay()

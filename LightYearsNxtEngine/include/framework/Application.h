@@ -21,7 +21,12 @@ namespace ly
 		// to understand the size of the window
 		sf::Vector2u GetWindowSize() const;
 
+		// to get the window to use in different place
+		sf::RenderWindow& GetWindow() { return _mWindow; }
+		const sf::RenderWindow& GetWindow() const { return _mWindow; }
 		private:
+		
+		bool DispatchEvent(const sf::Event& event);
 
 		//run function
 		
@@ -43,7 +48,7 @@ namespace ly
 		sf::Clock _mTickClock;
 
 		// to have one copy of the World
-		shared<World> currentWorld;
+		shared<World> _mCurrentWorld;
 
 		// create the clock for AssestManager
 		sf::Clock _mCleanCycleClock;
@@ -57,8 +62,8 @@ namespace ly
 	weak<WorldType> Application::LoadWorld()
 	{
 		shared<WorldType> newWorld{ new WorldType{this} };
-		currentWorld = newWorld;
-		currentWorld->BeginPlayInternal();
+		_mCurrentWorld = newWorld;
+		_mCurrentWorld->BeginPlayInternal();
 		return newWorld;
 
 	}

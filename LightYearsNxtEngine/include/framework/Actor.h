@@ -6,6 +6,7 @@
 #include "framework/AssestManager.h"
 #include "framework/MathUtility.h"
 #include "framework/World.h"
+#include "framework/Delegate.h"
 class b2Body;
 namespace ly {
 	// for physics body
@@ -85,6 +86,9 @@ namespace ly {
 		// to get the Sprite value
 		sf::Sprite& GetSprite() {return _mSprite;}
 		const sf::Sprite& GetSprite() const { return _mSprite; }
+
+		// adding the actor Delegate
+		Delegate<Actor*> onActorDestroyed;
 
 	private:
 		// to initialize physics
