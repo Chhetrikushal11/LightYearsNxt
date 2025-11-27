@@ -12,6 +12,8 @@
 #include "Enemy/HexagonStage.h"
 #include "Enemy/UFOStage.h"
 #include "player/PlayerManager.h"
+#include "Widget/GamePlayHUD.h"
+
 
 namespace ly
 {
@@ -38,6 +40,7 @@ namespace ly
 		_mPlayerSpaceShip = newPlayer.SpawnSpaceship(this);
 		_mPlayerSpaceShip.lock()->SetActorRotation(0.f);
 		_mPlayerSpaceShip.lock()->onActorDestroyed.BindAction(GetWeakRef(), &GameLevelOne::PlayerSpaceShipDestroyed);
+		_mGamePlayHUD = SpawnHUD<GamePlayHUD>();
 	}
 	//void GameLevelOne::TimerCallBack_Test()
 	//{

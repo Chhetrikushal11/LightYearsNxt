@@ -24,5 +24,9 @@ namespace ly
 		// WE WILL FILL AFTER WARDS;
 	}
 
+	void HUD::Tick(float deltaTime)
+	{
+
+	}
 
 }

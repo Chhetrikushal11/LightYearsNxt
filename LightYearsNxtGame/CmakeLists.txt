@@ -82,6 +82,11 @@ add_executable(${LIGHT_YEARS_GAME_TARGET_NAME}
  # for health condition
  ${CMAKE_CURRENT_SOURCE_DIR}/include/gameplay/HealthComponent.h
  ${CMAKE_CURRENT_SOURCE_DIR}/src/gameplay/HealthComponent.cpp
+
+ # for gameplay HUD
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/Widget/GamePlayHUD.h
+ ${CMAKE_CURRENT_SOURCE_DIR}/src/Widget/GamePlayHUD.cpp
+
  )
 
 # to find the target library

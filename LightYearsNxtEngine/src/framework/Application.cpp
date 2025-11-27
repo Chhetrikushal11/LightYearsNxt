@@ -67,6 +67,7 @@ namespace ly
 		{ 
 			return _mCurrentWorld->DispatchEvent(event);
 		}
+		return false;
 	}
 	void Application::TickInternal(float deltaTime)
 	{

@@ -45,7 +45,7 @@ namespace ly {
 
 		// for hud
 		template<typename HUDType, typename ... Args>
-		weak<HUD> SpawnHUD(Args... args);
+		weak<HUDType> SpawnHUD(Args... args);
 
 		// to queries from the application
 		sf::Vector2u GetWindowsSize() const;
@@ -103,9 +103,9 @@ namespace ly {
 	}
 
 	template<typename HUDType, typename ...Args>
-	inline weak<HUD> World::SpawnHUD(Args ...args)
+	inline weak<HUDType> World::SpawnHUD(Args ...args)
 	{
-		shared<HUDType> newHUD{ new HUDTYPE(args...) };
+		shared<HUDType> newHUD{ new HUDType(args...) };
 		_mHUD = newHUD;
 		return newHUD;
 	}

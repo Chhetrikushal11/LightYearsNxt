@@ -50,9 +50,13 @@ namespace ly
 		}
 		Tick(deltaTime);
 
-		if (_mHUD && _mHUD->HasInit())
+		if (_mHUD)
 		{
-			_mHUD->NativeInit(_mowningApp->GetWindow());
+			if (!_mHUD->HasInit())
+			{
+				_mHUD->NativeInit(_mowningApp->GetWindow());
+				_mHUD->Tick(deltaTime);
+			}
 		}
 	}
 
@@ -158,6 +162,7 @@ namespace ly
 		{
 			return _mHUD->HandleEvent(event);
 		}
+		return false;
 	}
 
 	void World::BeginPlay()
